@@ -62,7 +62,7 @@ public class ZoomHandler {
 		}
 
 		if (ValkyrieConfig.zoom.smoothZoom)
-			currentLevel += (targetLevel - currentLevel) * ValkyrieConfig.zoom.smoothZoomSpeed * deltaTime;
+			currentLevel += (float) ((targetLevel - currentLevel) * ValkyrieConfig.zoom.smoothZoomSpeed * deltaTime);
 		else
 			currentLevel = targetLevel;
 

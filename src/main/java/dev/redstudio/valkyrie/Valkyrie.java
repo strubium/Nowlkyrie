@@ -6,7 +6,7 @@ import dev.redstudio.valkyrie.handlers.ClientEventHandler;
 import dev.redstudio.valkyrie.handlers.DebugHandler;
 import dev.redstudio.valkyrie.handlers.KeyInputHandler;
 import dev.redstudio.valkyrie.keys.KeyBindings;
-import dev.redstudio.valkyrie.renderer.CloudRenderer;
+import dev.redstudio.valkyrie.renderer.cloud.CloudRenderer;
 import dev.redstudio.valkyrie.utils.JvmCheckUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.GameSettings;
@@ -46,7 +46,9 @@ public final class Valkyrie {
 	public static void preInit(FMLPreInitializationEvent preInitializationEvent) {
 		snoozerFile = new File(preInitializationEvent.getModConfigurationDirectory() + "/" + VERSION + " Snoozer.txt");
 
-		new Thread(JvmCheckUtil::checkJavaVersion).start();
+		if (ValkyrieConfig.general.javaVersionCheck) {
+			new Thread(JvmCheckUtil::checkJavaVersion).start();
+		}
 	}
 
 	@Mod.EventHandler
@@ -67,7 +69,7 @@ public final class Valkyrie {
 	}
 
 	public static void updateDebugHandler() {
-		if (ValkyrieConfig.debug.enabled)
+		if (ValkyrieConfig.debug.debugScreenEnabled)
 			MinecraftForge.EVENT_BUS.register(DebugHandler.class);
 		else
 			MinecraftForge.EVENT_BUS.unregister(DebugHandler.class);

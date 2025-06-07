@@ -24,6 +24,8 @@ jvmCheck.ignore=Ignore
 valkyrie.general.general=General
 valkyrie.general.general.tooltip=General configuration
 
+valkyrie.general.general.javaversioncheck=Disable Outdated Java Version Check
+valkyrie.general.general.javaversioncheck.tooltip=Enable or disable the popup when using an outdated Java version.
 valkyrie.general.general.highprecisiondepthbuffer=High Precision Depth Buffer
 valkyrie.general.general.highprecisiondepthbuffer.tooltip=Whether or not to use high precision depth buffer, this doesn't seem to be important or change much, but might be useful in the future.
 valkyrie.general.general.windowtitle=Window Title
@@ -94,6 +96,8 @@ valkyrie.general.debug.tooltip=Debug options
 
 valkyrie.general.debug.enabled=Debug Mode
 valkyrie.general.debug.enabled.tooltip=Whether or not debug mode is enabled
+valkyrie.general.debug.debugscreenenabled=Debug Screen
+valkyrie.general.debug.debugscreenenabled.tooltip=Should extra info be added to the debug screen?
 valkyrie.general.debug.wireframeclouds=Wireframe Clouds
 valkyrie.general.debug.wireframeclouds.tooltip=Whether or not the clouds should be rendered as wireframe
 valkyrie.general.debug.wireframeterrain=Wireframe Terrain

@@ -17,16 +17,16 @@ import static dev.redstudio.valkyrie.ProjectConstants.NAME;
 public class ValkyrieConfig {
 
 	public static final GeneralConfig general = new GeneralConfig();
-
 	public static final ZoomConfig zoom = new ZoomConfig();
-
 	public static final GraphicsConfig graphics = new GraphicsConfig();
-
 	public static final MC67532Fix mc67532Fix = new MC67532Fix();
-
 	public static final DebugConfig debug = new DebugConfig();
+	public static final MainMenuConfig mainMenu = new MainMenuConfig();
 
 	public static class GeneralConfig {
+
+		@Config.RequiresMcRestart
+		public boolean javaVersionCheck = true;
 
 		@Config.RequiresMcRestart
 		public boolean highPrecisionDepthBuffer = false;
@@ -49,9 +49,7 @@ public class ValkyrieConfig {
 	public static class GraphicsConfig {
 
 		public final CloudsConfig clouds = new CloudsConfig();
-
 		public final FogConfig fog = new FogConfig();
-
 		public final LeavesConfig leaves = new LeavesConfig();
 
 		public static class CloudsConfig {
@@ -62,6 +60,8 @@ public class ValkyrieConfig {
 			@Config.RangeInt(min = 4)
 			public int renderDistance = 32;
 			public int layers = 1;
+			public int layerOffset = 200;
+			public boolean useGeneratedTexture = false;
 
 			public float saturation = 0.5F;
 		}
@@ -95,7 +95,8 @@ public class ValkyrieConfig {
 
 	public static class DebugConfig {
 
-		public boolean enabled = true;
+		public boolean enabled = false;
+		public boolean debugScreenEnabled = false;
 		public boolean wireframeClouds = false;
 		public boolean wireframeTerrain = false;
 	}

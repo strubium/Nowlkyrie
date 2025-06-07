@@ -1,6 +1,7 @@
-package dev.redstudio.valkyrie.renderer;
+package dev.redstudio.valkyrie.renderer.cloud;
 
 import dev.redstudio.valkyrie.config.ValkyrieConfig;
+import dev.redstudio.valkyrie.renderer.FogRenderer;
 import net.jafama.FastMath;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
@@ -37,6 +38,8 @@ public class CloudRenderer implements ISelectiveResourceReloadListener {
 	private static final float ALPHA = 0.8F;
 	private static final float PX_SIZE = 1 / 256F;
 
+
+	private static GeneratedCloudTexture generatedCloudTexture;
 	private static final ResourceLocation MAP = new ResourceLocation("textures/environment/clouds.png");
 
 	private static final VertexFormat FORMAT = DefaultVertexFormats.POSITION_TEX_COLOR;
@@ -226,7 +229,9 @@ public class CloudRenderer implements ISelectiveResourceReloadListener {
 
 			final double totalOffset = cloudTicks + partialTicks;
 
-			double x = entity.prevPosX + (entity.posX - entity.prevPosX) * partialTicks + totalOffset * 0.03;
+			double layerOffsetX = (i - layers / 2.0) * ValkyrieConfig.graphics.clouds.layerOffset; // offset left/right centered
+
+			double x = entity.prevPosX + (entity.posX - entity.prevPosX) * partialTicks + totalOffset * 0.03 + layerOffsetX;
 			double y = (ValkyrieConfig.graphics.clouds.height + (i * 10)) - (entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * partialTicks) + 0.33;
 			double z = entity.prevPosZ + (entity.posZ - entity.prevPosZ) * partialTicks;
 
@@ -267,7 +272,15 @@ public class CloudRenderer implements ISelectiveResourceReloadListener {
 			GlStateManager.enableTexture2D();
 
 			GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);
-			MC.renderEngine.bindTexture(MAP);
+
+			if (ValkyrieConfig.graphics.clouds.useGeneratedTexture) {
+				if (generatedCloudTexture == null) {
+					generatedCloudTexture = new GeneratedCloudTexture();
+				}
+				generatedCloudTexture.bindTexture();
+			} else {
+				MC.renderEngine.bindTexture(MAP);
+			}
 
 			ByteBuffer buffer = Tessellator.getInstance().getBuffer().getByteBuffer();
 
