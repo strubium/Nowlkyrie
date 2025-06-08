@@ -11,14 +11,14 @@
 		"MinecraftMixin",
 		"SplashProgressMixin",
 		"VboRenderListMixin",
-		"WorldVertexBufferUploaderMixin",
-		"MathHelperMixin",
-		"AxisAlignedBBMixin"
+		"WorldVertexBufferUploaderMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
 	},
 	"mixins": [
+		"MathHelperMixin",
+		"AxisAlignedBBMixin",
 		"FMLCommonHandlerMixin"
 	]
 }
