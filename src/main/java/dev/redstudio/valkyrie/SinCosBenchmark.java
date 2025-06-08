@@ -20,6 +20,8 @@ public class SinCosBenchmark {
         // Benchmark FastMath.sin / FastMath.cos
         benchmarkFastMath();
 
+        benchmarkFastMathQuick();
+
         // Benchmark Minecraft's original MathHelper sin/cos (large table)
         benchmarkMinecraftSinCos();
 
@@ -67,6 +69,19 @@ public class SinCosBenchmark {
         }
         long duration = System.nanoTime() - start;
         System.out.printf("FastMath.sin/cos: %.2f ms, sum=%.5f%n", duration / 1e6, sum);
+    }
+
+    private static void benchmarkFastMathQuick() {
+        System.out.println("Benchmarking FastMath.sinQuick and FastMath.cosQuick...");
+        double sum = 0;
+        long start = System.nanoTime();
+        for (int i = 0; i < ITERATIONS; i++) {
+            float val = i * STEP;
+            sum += FastMath.sinQuick(val);
+            sum += FastMath.cosQuick(val);
+        }
+        long duration = System.nanoTime() - start;
+        System.out.printf("FastMath.sinQuick/cosQuick: %.2f ms, sum=%.5f%n", duration / 1e6, sum);
     }
 
     private static void benchmarkMinecraftSinCos() {
