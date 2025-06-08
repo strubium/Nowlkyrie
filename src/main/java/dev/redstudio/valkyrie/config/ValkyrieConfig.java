@@ -21,7 +21,6 @@ public class ValkyrieConfig {
 	public static final GraphicsConfig graphics = new GraphicsConfig();
 	public static final MC67532Fix mc67532Fix = new MC67532Fix();
 	public static final DebugConfig debug = new DebugConfig();
-	public static final MainMenuConfig mainMenu = new MainMenuConfig();
 
 	public static class GeneralConfig {
 

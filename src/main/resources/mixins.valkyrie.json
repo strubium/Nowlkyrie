@@ -11,7 +11,9 @@
 		"MinecraftMixin",
 		"SplashProgressMixin",
 		"VboRenderListMixin",
-		"WorldVertexBufferUploaderMixin"
+		"WorldVertexBufferUploaderMixin",
+		"MathHelperMixin",
+		"AxisAlignedBBMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

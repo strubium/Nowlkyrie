@@ -1,7 +1,6 @@
 package dev.redstudio.valkyrie.mixin;
 
 import com.llamalad7.mixinextras.sugar.Local;
-import it.unimi.dsi.fastutil.ints.IntArraySet;
 import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.client.renderer.ViewFrustum;
 import net.minecraft.client.renderer.chunk.ChunkRenderDispatcher;
@@ -25,7 +24,6 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 import java.util.*;
 
 import static dev.redstudio.valkyrie.Valkyrie.MC;
-import static dev.redstudio.valkyrie.ProjectConstants.LOGGER;
 
 @Mixin(RenderGlobal.class)
 public class RenderGlobalMixin {

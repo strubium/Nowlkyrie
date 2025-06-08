@@ -1,9 +1,11 @@
 package dev.redstudio.valkyrie.renderer.cloud;
 
 import lombok.Getter;
+import net.jafama.FastMath;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -60,13 +62,13 @@ public class GeneratedCloudTexture {
      */
     private float smoothNoise(float x, float y) {
         float value = 0;
-        value += 0.6f * (float) Math.sin(x * 1.3 + Math.cos(y * 0.7));
-        value += 0.3f * (float) Math.sin(x * 3.1 + y * 2.5);
-        value += 0.1f * (float) Math.sin(y * 5.1 - x * 1.7);
+        value += 0.6f *  MathHelper.sin((float) (x * 1.3 + MathHelper.cos((float) (y * 0.7))));
+        value += 0.3f *  MathHelper.sin((float) (x * 3.1 + y * 2.5));
+        value += 0.1f *  MathHelper.sin((float) (y * 5.1 - x * 1.7));
         return (value + 1f) / 2f; // normalize to 0–1
     }
 
     private float clamp(float f) {
-        return Math.max(0f, Math.min(1f, f));
+        return FastMath.max(0f, FastMath.min(1f, f));
     }
 }

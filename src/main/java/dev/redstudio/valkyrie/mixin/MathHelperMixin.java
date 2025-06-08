@@ -8,13 +8,29 @@ import org.spongepowered.asm.mixin.Overwrite;
 @Mixin(MathHelper.class)
 public class MathHelperMixin {
 
+	private static final int SIN_BITS = 10; // 2^10 = 1024 entries
+	private static final int SIN_MASK = ~(-1 << SIN_BITS); // 0xFFF
+	private static final int SIN_COUNT = SIN_MASK + 1;
+
+	private static final float PI2 = (float) (Math.PI * 2.0);
+	private static final float RAD_TO_INDEX = SIN_COUNT / PI2;
+
+	private static final float[] SIN_TABLE = new float[SIN_COUNT];
+
+	static {
+		for (int i = 0; i < SIN_COUNT; i++) {
+			float angle = (i * PI2) / SIN_COUNT;
+			SIN_TABLE[i] = (float) Math.sin(angle);
+		}
+	}
 	/**
 	 * @reason Improving performance
 	 * @author Desoroxxx
 	 */
 	@Overwrite
 	public static float sin(float value) {
-		return (float) FastMath.sinQuick(value);
+		int index = (int) (value * RAD_TO_INDEX) & SIN_MASK;
+		return SIN_TABLE[index];
 	}
 
 	/**
@@ -23,7 +39,8 @@ public class MathHelperMixin {
 	 */
 	@Overwrite
 	public static float cos(float value) {
-		return (float) FastMath.cosQuick(value);
+		int index = (int)(value * RAD_TO_INDEX + SIN_COUNT / 4) & SIN_MASK;
+		return SIN_TABLE[index];
 	}
 
 	/**
