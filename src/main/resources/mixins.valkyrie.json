@@ -20,6 +20,7 @@
 	"mixins": [
 		"MathHelperMixin",
 		"AxisAlignedBBMixin",
+		"ResourceLocationMixin",
 		"FMLCommonHandlerMixin"
 	]
 }
