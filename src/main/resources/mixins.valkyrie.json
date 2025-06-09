@@ -12,7 +12,8 @@
 		"SplashProgressMixin",
 		"VboRenderListMixin",
 		"WorldVertexBufferUploaderMixin",
-		"RenderHelperMixin"
+		"RenderHelperMixin",
+		"IntegerCacheMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
